@@ -1,0 +1,12 @@
+.avatar{
+    height: 70px;
+    width: 70px;
+    margin-top: 50px;
+   margin-left: 245px;
+}
+
+@media screen and (max-width: 510px) {
+    .avatar{
+      margin-left: 110px;
+    }
+  }
