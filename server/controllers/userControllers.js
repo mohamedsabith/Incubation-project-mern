@@ -48,7 +48,7 @@ export const userSignup = async (req, res) => {
     })
 
   } catch (error) {
-    console.log(chalk.red(error));
+    console.error(error.message);
     return res.status(404).json(error)
   }
 };
@@ -79,7 +79,7 @@ export const userSignIn = async (req,res) =>{
      })
 
   } catch (error) {
-    console.log(chalk.red(error));
+    console.error(error.message);
    return res.status(404).json(error)
   }
 
@@ -124,7 +124,7 @@ export const userApplictionForm = async(req,res) =>{
        })
 
     } catch (error) {
-       console.log(chalk.red(error));
+      console.error(error.message);
        return res.status(404).json(error)
     }
 
@@ -132,19 +132,44 @@ export const userApplictionForm = async(req,res) =>{
 
 //USER APPLICATION STATUS
 export const userApplicationStatus = async(req,res) =>{
-  const userId = req.query.userId
-  const Application=await applicationModel.findOne({user:userId})
-  return res.status(200).json({status:Application.status})
+
+  try {
+
+    const userId = req.query.userId
+
+    const Application=await applicationModel.findOne({user:userId})
+
+    return res.status(200).json({status:Application.status})
+    
+  } catch (error) {
+
+    console.error(error.message);
+    return res.status(404).json(error)
+
+  }
+
 }
 
 //CHECKING USER ALREADY SUBMIT APPLICATION
 export const userApplicationExist = async(req,res) =>{
-   const application = await applicationModel.findOne({user:req.query.userId})
-   if(application){
-    return res.status(200).json({status:true})
-   }else{
-     return res.status(200).json({status:false})
-   }
+
+  try {
+
+    const application = await applicationModel.findOne({user:req.query.userId})
+
+    if(application){
+     return res.status(200).json({status:true})
+    }else{
+      return res.status(200).json({status:false})
+    }
+    
+  } catch (error) {
+
+    console.error(error.message);
+    return res.status(404).json(error)
+    
+  }
+
 }
  
 

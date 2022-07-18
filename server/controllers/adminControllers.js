@@ -34,7 +34,8 @@ export const adminSignIn = async(req,res) =>{
     })
 
     } catch (error) {
-        console.log(chalk.red(error));
+        console.error(error.message);
+        return res.status(404).json(error);
     }
       
 }
@@ -48,7 +49,7 @@ export const getAllApplications = async(req,res) =>{
         return res.status(200).json(applications)
         
      } catch (error) {
-
+        console.error(error.message);
         return res.status(404).json(error)
         
      }
@@ -68,7 +69,7 @@ export const approveApplication = async(req,res) =>{
     return res.status(200).json({status:true,message:"Application approved"})
 
   } catch (error) {
-     console.log(error);
+     console.error(error.message);
      return res.status(404).json(error)
   }
 
@@ -88,7 +89,7 @@ export const declinedApplication = async(req,res) =>{
         
     } catch (error) {
     
-     console.log(error);
+     console.error(error.message);
 
      return res.status(404).json(error)
     }
@@ -109,7 +110,7 @@ export const processApplication = async(req,res) =>{
         
     } catch (error) {
     
-     console.log(error);
+     console.error(error.message);
 
      return res.status(404).json(error)
     }
@@ -143,7 +144,7 @@ export const getAllSlots = async(req,res) =>{
         return res.status(200).json({sectionA,sectionB,sectionC,sectionD,sectionE})
 
     } catch (error) {
-        console.log(error);
+        console.error(error.message);
         return res.status(404).json(error)
     }
 
@@ -158,7 +159,7 @@ export const getAllApprovedApplication = async(req,res) =>{
        return res.status(200).json(approvedApplication)
 
     } catch (error) {
-        console.log(error);
+        console.error(error.message);
         return res.status(200).json(error)
     }
 
@@ -176,7 +177,7 @@ export const slotAlocation = async(req,res) =>{
      return res.status(200).json({message:"slot successfully allocated"})
 
    } catch (error) {
-    console.log(error);
+    console.error(error.message);
     return res.status(200).json(error)
    }
 
